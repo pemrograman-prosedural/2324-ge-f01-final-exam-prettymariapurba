@@ -19,5 +19,6 @@ void assign_student(struct student_t *_student, struct dorm_t *_dorm, unsigned s
 unsigned short int get_index_student (struct student_t *_student, unsigned short int size_std, char *_idstd, int *found);
 void dorm_empty(struct student_t *_student, struct dorm_t *_dorm, unsigned short int poin, unsigned short int size_std);
 void move_student(struct student_t *_student, struct dorm_t *_dorm, struct dorm_t *new_dorm, unsigned short int idx_std, unsigned short int idx_drm);
-void student_leave(struct student_t *_student, struct dorm_t *_dorm, unsigned short int idx_std);
+void leave_students(struct student_t *_student, struct dorm_t *_dorm, unsigned short int idx_std);
+
 #endif

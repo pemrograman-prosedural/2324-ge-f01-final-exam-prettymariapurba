@@ -4,9 +4,9 @@ void student_print_detail(struct student_t *_student, unsigned short int _size, 
     for (int i = 0; i < _size; i++) {
         char dorm_name[15];
         if (_student[i].dorm == NULL && is_initial_state) {
-            strcpy(dorm_name, "unassigned");
+            strcpy(dorm_name, "left");
         } else if (_student[i].dorm == NULL) {
-            strcpy(dorm_name, "unassigned");
+            strcpy(dorm_name, "left");
         } else {
             strcpy(dorm_name, _student[i].dorm->name);
         }
@@ -90,7 +90,7 @@ void move_student(struct student_t *_student, struct dorm_t *_dorm, struct dorm_
     }
 }
 
-void student_leave(struct student_t *_student, struct dorm_t *_dorm, unsigned short int idx_std) {
+void leave_students(struct student_t *_student, struct dorm_t *_dorm, unsigned short int idx_std) {
     if (_student[idx_std].dorm != NULL) {
         _student[idx_std].dorm->residents_num--;
         _student[idx_std].dorm = NULL;
