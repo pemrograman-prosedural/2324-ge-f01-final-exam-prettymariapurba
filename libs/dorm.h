@@ -16,4 +16,5 @@ void print_dorm(struct dorm_t dorm);
 void print_dorm_detail(struct dorm_t dorm);
 short find_dorm(struct dorm_t* dorms, int count, const char* name);
 
+
 #endif

@@ -50,6 +50,7 @@ void move_student(struct dorm_t* dorms, struct student_t* students, char* studen
     short newDormIdx = find_dorm(dorms, dorm_count, dorm_name);
     short oldDormIdx = find_dorm(dorms, dorm_count, students[studentIdx].dorm->name);
 
+
     if (studentIdx >= 0 && newDormIdx >= 0 && oldDormIdx >= 0) {
         dorms[oldDormIdx].residents_num--;
         students[studentIdx].dorm = &dorms[newDormIdx];

@@ -4,6 +4,7 @@
 #include <string.h>
 #include "./dorm.h"
 
+
 struct dorm_t create_dorm(char* input) {
     struct dorm_t dorm;
     char* token = strtok(NULL, "#");

@@ -78,6 +78,7 @@ int main(int _argc, char **_argv) {
             dorm_empty(asrama, zstd, zdrm, mhs, drm, find_dorm);
         }
     }
+    
 
     free(mhs);
     free(drm);
