@@ -1,68 +1,45 @@
 #include "dorm.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include "string.h"
 
-/**
- * @brief Define the complete function definition here. Be sure to enlist the prototype of each function
- * defined here in the corresponding header file.
- *
- */
 
-struct dorm_t create_dorm(char *input)
-{
-  struct dorm_t drm;
-  strcpy(drm.name, strtok(NULL, "#"));
-  drm.capacity = atoi(strtok(NULL, "#"));
-  char *yoru = strtok(NULL, "#");
-  if (strcmp(yoru, "male") == 0)
-  {
-    drm.gender = GENDER_MALE;
-  }
-  else if (strcmp(yoru, "female") == 0)
-  {
-    drm.gender = GENDER_FEMALE;
-  }
-  drm.residents_num=0;
-  return drm;
-}
 
-void print_dorm(struct dorm_t drm)
-{
-  printf("%s|%hu|", drm.name, drm.capacity);
-  if (drm.gender == GENDER_MALE)
-  {
-    printf("male\n");
-  }
-  else if (drm.gender == GENDER_FEMALE)
-  {
-    printf("female\n");
-  }
-}
-
-void print_dorm_detail(struct dorm_t drm)
-{
-  printf("%s|%hu|", drm.name, drm.capacity);
-  if (drm.gender == GENDER_MALE)
-  {
-    printf("male|");
-  }
-  else if (drm.gender == GENDER_FEMALE)
-  {
-    printf("female|");
-  }
-  printf("%hu\n", drm.residents_num);
-}
-
-int find_dorm(char *asrama, int zdrm, struct dorm_t *drm)
-{
-  int find_dorm = -1;
-  for (int m = 0; m < zdrm; m++)
-  {
-    if (strcmp(asrama, drm[m].name)==0)
-    {
-      find_dorm=m;
+// Function
+void print_dorm_detail (struct dorm_t *dorms, unsigned short int size_dorm){
+    for(int i = 0; i< size_dorm; i++){
+        printf("%s|%d|%s|%d\n", dorms[i].name, dorms[i].capacity, gender_to_text (dorms[i].gender), dorms[i].residents_num);
     }
-  }
-  return find_dorm;
 }
+
+
+void print_all_dorm (struct dorm_t *dorms, unsigned short int size_dorm){
+    for(int i = 0; i< size_dorm; i++){
+
+        printf("%s|%d|%s\n", dorms[i].name, dorms[i].capacity, gender_to_text (dorms[i].gender));
+    }
+}
+
+struct dorm_t create_dorm(char *_name, unsigned short _capacity, enum gender_t _gender) {
+    struct dorm_t dorm_;
+    strcpy(dorm_.name, _name);
+    dorm_.capacity = _capacity;
+    dorm_.gender = _gender;
+    dorm_.residents_num = 0;
+    return dorm_;
+}
+
+
+unsigned short int get_index_dorm (struct dorm_t *_dorm, unsigned short int size_drm, char *_name){
+    unsigned short int counter_drm, i;
+
+    for (i = 0; i < size_drm; i++){
+                if(strcmp(_dorm[i].name, _name) == 0)
+                {
+                    counter_drm = i;
+                    break;
+                }
+    }
+    return counter_drm;
+    
+}
+
+
