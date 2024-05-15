@@ -1,35 +1,68 @@
-// dorm.c
-#include <stdio.h>
+#include "dorm.h"
 #include <stdlib.h>
 #include <string.h>
-#include "./dorm.h"
+#include <stdio.h>
 
+/**
+ * @brief Define the complete function definition here. Be sure to enlist the prototype of each function
+ * defined here in the corresponding header file.
+ *
+ */
 
-struct dorm_t create_dorm(char* input) {
-    struct dorm_t dorm;
-    char* token = strtok(NULL, "#");
-    strcpy(dorm.name, token);
-    token = strtok(NULL, "#");
-    dorm.capacity = atoi(token);
-    token = strtok(NULL, "#");
-    dorm.gender = strcmp(token, "male") == 0 ? GENDER_MALE : GENDER_FEMALE;
-    dorm.residents_num = 0;
-    return dorm;
+struct dorm_t create_dorm(char *input)
+{
+  struct dorm_t drm;
+  strcpy(drm.name, strtok(NULL, "#"));
+  drm.capacity = atoi(strtok(NULL, "#"));
+  char *yoru = strtok(NULL, "#");
+  if (strcmp(yoru, "male") == 0)
+  {
+    drm.gender = GENDER_MALE;
+  }
+  else if (strcmp(yoru, "female") == 0)
+  {
+    drm.gender = GENDER_FEMALE;
+  }
+  drm.residents_num=0;
+  return drm;
 }
 
-void print_dorm(struct dorm_t dorm) {
-    printf("%s|%d|%s|%d\n", dorm.name, dorm.capacity, dorm.gender == GENDER_MALE ? "male" : "female", dorm.residents_num);
+void print_dorm(struct dorm_t drm)
+{
+  printf("%s|%hu|", drm.name, drm.capacity);
+  if (drm.gender == GENDER_MALE)
+  {
+    printf("male\n");
+  }
+  else if (drm.gender == GENDER_FEMALE)
+  {
+    printf("female\n");
+  }
 }
 
-void print_dorm_detail(struct dorm_t dorm) {
-    printf("Dorm: %s\nCapacity: %d\nGender: %s\nResidents: %d\n", dorm.name, dorm.capacity, dorm.gender == GENDER_MALE ? "male" : "female", dorm.residents_num);
+void print_dorm_detail(struct dorm_t drm)
+{
+  printf("%s|%hu|", drm.name, drm.capacity);
+  if (drm.gender == GENDER_MALE)
+  {
+    printf("male|");
+  }
+  else if (drm.gender == GENDER_FEMALE)
+  {
+    printf("female|");
+  }
+  printf("%hu\n", drm.residents_num);
 }
 
-short find_dorm(struct dorm_t* dorms, int count, const char* name) {
-    for (short i = 0; i < count; i++) {
-        if (strcmp(dorms[i].name, name) == 0) {
-            return i;
-        }
+int find_dorm(char *asrama, int zdrm, struct dorm_t *drm)
+{
+  int find_dorm = -1;
+  for (int m = 0; m < zdrm; m++)
+  {
+    if (strcmp(asrama, drm[m].name)==0)
+    {
+      find_dorm=m;
     }
-    return -1;
+  }
+  return find_dorm;
 }

@@ -1,24 +1,36 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include "./gender.h"
-#include "./dorm.h"
+#include "gender.h"
+#include "dorm.h"
 
-struct student_t {
-    char id[50];
-    char name[50];
-    char year[10];
-    gender_t gender;
-    struct dorm_t* dorm;
+/**
+ * @brief define your structure, enums, globally accessible variables, and function prototypes here.
+ * The actual function implementation should be defined in the corresponding source file.
+ *
+ */
+
+struct student_t
+{
+  char id[12];
+  char name[40];
+  char year[5];
+  enum gender_t gender;
+  struct dorm_t *dorm;
 };
 
-struct student_t create_student(char* input);
-void print_student(struct student_t student);
-void print_student_detail(struct student_t student);
-short find_id(struct student_t* students, int count, const char* id);
-void assign_student(struct dorm_t* dorms, struct student_t* students, char* student_id, char* dorm_name, int student_count, int dorm_count, short(find_id)(struct student_t, int, const char*), short(find_dorm)(struct dorm_t, int, const char*));
-void move_student(struct dorm_t* dorms, struct student_t* students, char* student_id, char* dorm_name, int student_count, int dorm_count, short(find_id)(struct student_t, int, const char*), short(find_dorm)(struct dorm_t, int, const char*));
-void dorm_empty(char* dorm_name, int student_count, int dorm_count, struct student_t* students, struct dorm_t* dorms, short(find_dorm)(struct dorm_t, int, const char*));
-void student_leave(struct student_t* students, int student_count, char* student_id);
+struct student_t create_student(char *input);
+
+void print_student(struct student_t mhs);
+
+void print_student_detail(struct student_t mhs);
+
+void assign_student(struct dorm_t *drm, struct student_t *mhs, char *nim, char *asrama, int zstd, int zdrm, int find_id(char *nim, int zstd, struct student_t *mhs), int find_dorm(char *asrama, int zdrm, struct dorm_t *drm));
+
+int find_id(char *nim, int zstd, struct student_t *mhs);
+
+void move_student(struct dorm_t *drm, struct student_t *mhs, char *nim, char *asrama, int zstd, int zdrm, int find_id(char *nim, int zstd, struct student_t *mhs), int find_dorm(char *asrama, int zdrm, struct dorm_t *drm));
+
+void dorm_empty(char *asrama, int zstd, int zdrm, struct student_t *mhs, struct dorm_t *drm, int find_dorm(char *asrama, int zdrm, struct dorm_t *drm));
 
 #endif
